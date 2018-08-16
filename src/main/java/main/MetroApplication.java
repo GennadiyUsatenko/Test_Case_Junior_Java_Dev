@@ -27,19 +27,19 @@ public class MetroApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) {
-        final String URL = "http://localhost:8080/customer";
+        final String uri = "http://localhost:8080/customer";
         RestTemplate restTemplate = new RestTemplate();
         try{
-            //task number 1 - send post request to localhost:8080/customer
+            //Task number 1 - Sending request - Protocol: POST | URI: localhost:8080/customer
             RequestEntity<Customer> postRequest = RequestEntity
-                    .post(new URI( URL ))
+                    .post(new URI( uri ))
                     .accept(APPLICATION_JSON_UTF8)
                     .body(Customer.getForTestCase());
-            //getting response
+            //Response with status 201
             ResponseEntity<CsvFileInfo> postResponse = restTemplate.exchange(postRequest, CsvFileInfo.class);
-            //task number 2 - send get request to localhost:8080/customer/{uniqueFileName}
+            //Task number 2 - Sending request - Protocol: GET | URI: localhost:8080/customer/{uniqueFileName}
             ResponseEntity<Customer> getResponse = restTemplate
-                    .getForEntity(new URI(URL + "/" + postResponse.getBody().getFile_name()), Customer.class);
+                    .getForEntity(new URI(uri + "/" + postResponse.getBody().getFile_name()), Customer.class);
 
         }catch (URISyntaxException e){
             e.printStackTrace();

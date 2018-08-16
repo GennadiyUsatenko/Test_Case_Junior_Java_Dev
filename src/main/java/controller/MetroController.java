@@ -21,19 +21,19 @@ public class MetroController {
 
     @RequestMapping(value = "/customer", method = RequestMethod.POST)
     public ResponseEntity<CsvFileInfo> saveCustomer(@RequestBody Customer customer) throws IOException {
-        System.out.println("Send post request to localhost:8080/customer :\n" + customer.toString());
+        System.out.println("Protocol: POST | URI: localhost:8080/customer | Request body:\n" + customer.toString());
         customerDAO.save(customer);
         CsvFileInfo csvFileInfo = csvFileConverterService.convertToFile(customer);
-        System.out.println("Getting response :\n" + csvFileInfo.toString());
+        System.out.println("Response with status 201:\n" + csvFileInfo.toString());
 
         return new ResponseEntity<CsvFileInfo>(csvFileInfo, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/customer/{uniqueFileName}", method = RequestMethod.GET)
     public ResponseEntity<Customer> getCustomerByFileName(@PathVariable String uniqueFileName) throws IOException {
-        System.out.println("Send get request to localhost:8080/customer/" + uniqueFileName);
+        System.out.println("Protocol: GET | URI: localhost:8080/customer/" + uniqueFileName);
         Customer customer = csvFileConverterService.convertToCustomer(uniqueFileName);
-        System.out.println("Getting response :\n" + customer.toString());
+        System.out.println("Response with status 201:\n" + customer.toString());
 
         return new ResponseEntity<Customer>(customer, HttpStatus.CREATED);
     }

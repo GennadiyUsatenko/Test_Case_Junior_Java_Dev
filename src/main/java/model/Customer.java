@@ -22,11 +22,11 @@ public class Customer {
     @Column(nullable = false)
     private Long age;
     @Column(nullable = false)
-    private String mobile_no;
+    private Long mobile_no;
 
     public Customer(){}
 
-    public Customer(Long id, String name, Long age, String mobile_no){
+    public Customer(Long id, String name, Long age, Long mobile_no){
         this.id = id;
         this.name = name;
         this.age = age;
@@ -34,7 +34,7 @@ public class Customer {
     }
 
     public static Customer getForTestCase(){
-        return new Customer(101l, "John", 22l, "380633221100");
+        return new Customer(101l, "John", 22l, 380633221100l);
     }
 
     @Override
@@ -71,11 +71,11 @@ public class Customer {
         this.age = age;
     }
 
-    public String getMobile_no() {
+    public Long getMobile_no() {
         return mobile_no;
     }
 
-    public void setMobile_no(String mobile_no) {
+    public void setMobile_no(Long mobile_no) {
         this.mobile_no = mobile_no;
     }
 
