@@ -13,7 +13,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class CsvFileConverterService {
 
     private static final String FS = File.separator;
-    private static final String DIRECTORY = System.getProperty("user.dir") + FS+"src"+FS+"main"+FS+"resources"+FS;
+    private static final String DIRECTORY =
+        System.getProperty("user.dir") + String.join(FS, FS  + "src", "main", "resources" + FS);
     private static final String FILE_TYPE = ".csv";
     private static Long uniqueFileNameCounter = 201808141059l;
 
